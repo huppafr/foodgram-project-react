@@ -7,11 +7,12 @@ User = get_user_model()
 """
 Рецепт должен описываться такими полями:
 
-Автор публикации (пользователь).
+Автор публикации (пользователь). ++++
 Название.
-Картинка.
-Текстовое описание.
-Ингредиенты: продукты для приготовления блюда по рецепту. Множественное поле, выбор из предустановленного списка, с указанием количества и единицы измерения.
+Картинка. ++++
+Текстовое описание. ++++
+Ингредиенты: продукты для приготовления блюда по рецепту. Множественное поле,
+  выбор из предустановленного списка, с указанием количества и единицы измерения.
 Тег (можно установить несколько тегов на один рецепт, выбор из предустановленных).
 Время приготовления в минутах.
 Все поля обязательны для заполнения.
@@ -19,49 +20,31 @@ User = get_user_model()
 
 class Recipe(models.Model):
     author = models.ForeignKey(
-
-    )
-    #name
-    #image
-
-    description = models.TextField(
-        verbose_name='Публикация',
-        help_text='Введите текст публикации',
-    )
-
-    #ingredients
-    #tag
-    coocking_time = models.CharField(
-        max_length = 30,
-        help_text='Введите текст публикации',
-    )
-
-
-
-    pub_date = models.DateTimeField(
-        verbose_name='Дата публикации',
-        auto_now_add=True
-    )
-    author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name='posts',
-        verbose_name='Автор статьи',
+        verbose_name='Автор публикации',
         help_text='Выберите автора',
     )
-    group = models.ForeignKey(
-        'Group',
-        on_delete=models.SET_NULL,
-        related_name='posts',
-        verbose_name='Сообщество',
-        help_text='Выберите сообщество',
-        blank=True,
-        null=True
+    name = models.TextField(
+        verbose_name='Название',
+        help_text='Введите название для публикации',
     )
     image = models.ImageField(
-        upload_to='posts/',
+        upload_to='posts/',   # додумать
         blank=True,
         null=True,
         verbose_name='Изображение',
         help_text='Выбрать файл',
+    )
+    description = models.TextField(
+        verbose_name='Публикация',
+        help_text='Введите текст публикации',
+    )
+    #ingredients
+    #tag
+    coocking_time = models.CharField(
+        max_length = 30,
+        verbose_name='Время приготовления',
+        help_text='Введите время приготовления блюда',
     )
