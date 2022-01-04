@@ -7,6 +7,7 @@ pip install django
 Также потребуется адаптер PostgreSQL под названием Psycopg2 для Python. Эта команда установит его: -->
 pip install psycopg2
 pip install django-environ 
+pip install pillow
 
 
 
