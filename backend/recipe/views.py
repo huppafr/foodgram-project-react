@@ -1,20 +1,29 @@
-from django.conf import settings
-from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
-from django.shortcuts import get_object_or_404, redirect, render
-from django.views.decorators.cache import cache_page
+from rest_framework import status
+from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters, viewsets
+from rest_framework import mixins
+from rest_framework.permissions import (IsAuthenticated,
+                                        IsAuthenticatedOrReadOnly)
 
-#from .forms import PostForm, CommentForm
-from .models import Recipe
+
+from .models import Recipe, Tag
+from .serializers import RecipeSerializer, RecipeListSerializer, TagSerializer
 
 
-@cache_page(60)
-def index(request):
-    recipe_list = Recipe.objects.all()
-    paginator = Paginator(recipe_list, settings.POSTS_PER_PAGE)
-    page_number = request.GET.get('page')
-    page = paginator.get_page(page_number)
-    return render(request, 'index.html', {
-        'page': page,
-        'paginator': paginator
-    })
+class RecipeViewSet(viewsets.ModelViewSet):
+    queryset = Recipe.objects.all()
+    serializer_class = RecipeSerializer
+
+    def get_serializer_class(self):
+        # Если запрошенное действие (action) — получение списка объектов ('list')
+        if self.action == 'list':
+            # ...то применяем RecipeListSerializer
+            return RecipeListSerializer
+        # А если запрошенное действие — не 'list', применяем RecipeSerializer
+        return RecipeSerializer 
+
+
+class TagViewSet(viewsets.ModelViewSet):
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer 

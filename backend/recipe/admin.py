@@ -1,8 +1,15 @@
 from django.contrib import admin
 
-from .models import Recipe
+from .models import Recipe, Tag
 
 class RecipeAdmin(admin.ModelAdmin):
+    list_display = ("pk", "author", "name", "image", "description", "coocking_time",)
+    search_fields = ("name", "author",)
+    list_filter = ("name",)
+    empty_value_display = "-пусто-"
+
+
+class TagAdmin(admin.ModelAdmin):
     list_display = ("pk", "author", "name", "image", "description", "coocking_time",)
     search_fields = ("name", "author",)
     list_filter = ("name",)
