@@ -5,66 +5,41 @@ from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractUser):
-    email = models.EmailField(
-        unique=True,
-        blank=False,
-        null=False,
-        verbose_name= 'Email адрес',
-        help_text='Придумайте email адрес'
-    )
-    first_name = models.CharField(
-        max_length=150,
-        blank=False,
-        null=False,
-        verbose_name='Имя',
-        help_text='Введите имя'
-
-    )
-    last_name = models.CharField(
-        max_length=150,
-        blank=False,
-        null=False,
-        verbose_name='Фамилия',
-        help_text='Введите фамилию'
-    )
-    USERNAME_FIELD = 'email'
+    first_name = models.CharField('first name', max_length=150)
+    last_name = models.CharField('last name', max_length=150)
+    email = models.EmailField('email address', unique=True)
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
+    USERNAME_FIELD = 'email'
 
     class Meta:
-        verbose_name = _('User')
-        verbose_name_plural = _('Users')
-        ordering = ['username']
+        ordering = ['last_name']
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
 
     def __str__(self):
-        return self.get_full_name()
+        return f'{self.last_name} {self.first_name}'
 
 
-class UserSubscription(models.Model):
-    subscriber = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        related_name='subscriptions',
-        on_delete=models.CASCADE
-    )
-    subscription = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        related_name='subscribers',
-        on_delete=models.CASCADE
-    )
-    subscribed_at = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name=_('subscription date')
-    )
+class Follow(models.Model):
+    author = models.ForeignKey(User,
+                               related_name='author_follow',
+                               on_delete=models.CASCADE,
+                               verbose_name='you_Who_have_been_subscribed_to_people')
+
+    subscriber = models.ForeignKey(User,
+                                   related_name="following",
+                                   on_delete=models.CASCADE,
+                                   verbose_name="People_who_u_subscribed",
+                                   )
 
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=['subscriber', 'subscription'],
-                name='unique_subscription',
-            )
+                fields=['subscriber', 'author'], name='unique_subscription'
+            ),
         ]
-        verbose_name = _('Subscription')
-        verbose_name_plural = _('Subscriptions')
-        ordering = ['-subscribed_at', 'id']
 
-    def __str__(self):
-        return f'{self.subscriber} - {self.subscription}'
+    class Meta:
+        verbose_name = 'Подписку'
+        verbose_name_plural = 'Подписки'
+

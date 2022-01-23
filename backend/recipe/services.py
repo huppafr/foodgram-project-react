@@ -7,6 +7,8 @@ from ingredient.models import Ingredient
 
 from .models import Recipe, Tag
 
+# НУЖКЕН ЛИ ОН ВООБЩЕ, 
+
 
 def add_recipe_with_ingredients_tags(serialized_data):
     """

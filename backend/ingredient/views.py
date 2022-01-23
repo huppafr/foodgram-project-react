@@ -1,18 +1,15 @@
-from django_filters import rest_framework as filters
-from rest_framework import mixins, viewsets
+# from django_filters import rest_framework as filters
+from rest_framework import viewsets
 
 from .filters import IngredientFilter
 from .models import Ingredient
 from .serializers import IngredientSerializer
 
 
-class IngredientViewSet(
-    mixins.RetrieveModelMixin,
-    mixins.ListModelMixin,
-    viewsets.GenericViewSet
-):
+class IngredientsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
+    filter_backends = (IngredientFilter,)
     pagination_class = None
-    filter_backends = (filters.DjangoFilterBackend,)
-    filterset_class = IngredientFilter
+    search_fields = ('^name',)
+

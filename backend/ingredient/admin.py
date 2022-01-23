@@ -1,21 +1,29 @@
 from django.contrib.admin import ModelAdmin, register
 
-from .models import Ingredient, MeasurementUnit
+from .models import Ingredient, IngredientAmount
 
 
 @register(Ingredient)
 class IngredientAdmin(ModelAdmin):
-    list_display = ('id', 'name', 'measurement_unit')
-    search_fields = ('name',)
-    list_filter = ('name', 'measurement_unit',)
-    ordering = ('name',)
-    empty_value_display = '-'
+    list_display = [
+        'pk',
+        'name',
+        'measurement_unit',
+    ]
+    list_filter = ['name',]
+    search_fields = ['name',]
+    empty_value_display = '-пусто-'
 
 
-@register(MeasurementUnit)
-class MeasurementUnit(ModelAdmin):
-    list_display = ('id', 'name', 'metric')
-    search_fields = ('name',)
-    list_filter = ('name', 'metric',)
-    ordering = ('name',)
-    empty_value_display = '-'
+@register(IngredientAmount)
+class IngredientAmountAdmin(ModelAdmin):
+    list_display = [
+        'pk',
+        'amount',
+        'ingredient',
+        'recipe',
+    ]
+    list_filter = ['ingredient', 'recipe',]
+    search_fields = ['recipe',]
+    empty_value_display = '-пусто-'
+    

@@ -18,6 +18,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+# from django.views.generic import TemplateView
 
 from djoser import views as djoser_views
 
@@ -26,20 +27,26 @@ from djoser import views as djoser_views
 
 
 urlpatterns = [
+    # path(
+    #     'redoc/',
+    #     TemplateView.as_view(template_name='redoc.html'),
+    #     name='redoc'
+    # ),
     path('admin/', admin.site.urls),
     path('api/', include('recipe.urls')),
     #path('api/', include(v1_router.urls)),
     path('api/', include('djoser.urls')),
-    path(
-        'api/auth/token/login/',
-        djoser_views.TokenCreateView.as_view(),
-        name='login'
-    ),
-    path(
-        'api/auth/token/logout/',
-        djoser_views.TokenDestroyView.as_view(),
-        name='login'
-    ),
+    # path(
+    #     'api/auth/token/login/',
+    #     djoser_views.TokenCreateView.as_view(),
+    #     name='login'
+    # ),
+    # path(
+    #     'api/auth/token/logout/',
+    #     djoser_views.TokenDestroyView.as_view(),
+    #     name='login'
+    # ),
+    
 ]
 
 

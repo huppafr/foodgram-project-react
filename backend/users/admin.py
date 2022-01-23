@@ -1,22 +1,47 @@
-from django.contrib import admin
+#from django.contrib import admin
 from django.contrib.admin import ModelAdmin, register
 
-from .models import User, UserSubscription
+from .models import User, Follow
 
-admin.site.register(UserSubscription)
+
 
 
 @register(User)
 class UserAdmin(ModelAdmin):
-    list_display = (
+    list_display = [
+        'pk',
+        'username',
+        'email',
+        'first_name',
+        'last_name'
+    ]
+    list_filter = [
         'username',
         'email',
         'first_name',
         'last_name',
-        'date_joined'
-    )
-    search_fields = ('username', 'email',)
-    list_filter = ('username', 'email', 'first_name',)
-    ordering = ('date_joined',)
-    empty_value_display = '-'
-    readonly_fields = ('date_joined', 'last_login')
+    ]
+    search_fields = [
+        'username',
+        'email',
+        'first_name',
+        'last_name',
+    ]
+    empty_value_display = '-пусто-'
+
+@register(Follow)
+class FollowAdmin(ModelAdmin):
+    list_display = [
+        'pk',
+        'subscriber',
+        'author',
+    ]
+    list_filter = [
+        'subscriber',
+        'author',
+    ]
+    search_fields = [
+        'subscriber',
+        'author',
+    ]
+    empty_value_display = '-пусто-'
