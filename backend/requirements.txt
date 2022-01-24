@@ -15,7 +15,6 @@ django-slugger==1.1.2
 django-templated-mail==1.1.1
 django-uuslug==1.2.0
 djangorestframework==3.13.1
-djangorestframework-simplejwt==4.8.0
 djoser
 idna==3.3
 itypes==1.2.0
