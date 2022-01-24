@@ -3,8 +3,6 @@ from django.template.defaultfilters import slugify as django_slugify
 from unidecode import unidecode
 
 
-# НУЖКЕН ЛИ ОН ВООБЩЕ, 
-
 def unique_slugify(value, model):
     index = 0
     base_slug = django_slugify(unidecode(value))

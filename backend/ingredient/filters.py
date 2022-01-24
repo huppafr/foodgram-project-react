@@ -1,8 +1,8 @@
 from django_filters import rest_framework as filters
 from django_filters.rest_framework import FilterSet, filters
 from rest_framework.filters import SearchFilter
-from .models import Ingredient
-# А НУЕН ЛИ ОН ВООБЩЕ?
+#from .models import Ingredient
+
 from recipe.models import Recipe
 from users.models import User
 
@@ -31,11 +31,3 @@ class RecipeFilter(FilterSet):
 
 class IngredientFilter(SearchFilter):
     search_param = 'name'
-
-
-# class IngredientFilter(filters.FilterSet):
-#     name = filters.CharFilter(field_name='name', lookup_expr='startswith')
-
-#     class Meta:
-#         model = Ingredient
-#         fields = ['name']

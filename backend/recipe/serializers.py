@@ -10,43 +10,6 @@ from ingredient.serializers import IngredientAmountSerializer
 from ingredient.models import IngredientAmount
 
 
-
-
-# from .services import (add_recipe_with_ingredients_tags,
-#                        update_recipe_with_ingredients_tags)
-
-
-
-
-
-
-
-# class UserSerializer(serializers.ModelSerializer):
-#     """
-#     Define here to avoid circular imports
-#     """
-#     is_subscribed = serializers.SerializerMethodField()
-
-#     class Meta:
-#         model = User
-#         fields = [
-#             'email',
-#             'id',
-#             'username',
-#             'first_name',
-#             'last_name',
-#             'is_subscribed',
-#         ]
-
-#     def get_is_subscribed(self, obj):
-#         user = self.context['request'].user
-#         if user.is_anonymous:
-#             return False
-#         return UserSubscription.objects.filter(
-#             subscriber=user, subscription=obj
-#         ).exists()
-
-
 class TagSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -185,51 +148,3 @@ class RecipeSerializerGet(RecipeSerializer):
             'text',
             'cooking_time'
         ]
-
-
-
-
-# class RecipeSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Recipe
-#         fields = '__all__'
-
-#     def __str__(self):
-#         return self.name
-
-
-# class RecipeListSerializer(serializers.ModelSerializer):
-#     author = UserSerializer(read_only=True)
-#     tags = TagSerializer(many=True, read_only=True)
-#     #ingredients = IngredientSerializer(many=True, read_only=True)
-#     ingredients = IngredientAmountSerializer(
-#         many=True,
-#         source='ingredient_amounts'
-#     )
-#     is_favorited = serializers.BooleanField(read_only=True)
-#     is_in_shopping_cart = serializers.BooleanField(read_only=True)
-#     image = Base64ImageField()
-
-
-#     class Meta:
-#         model = Recipe
-#         fields = (
-#             'id',
-#             'tags',
-#             'author',
-#             'name',
-#             'ingredients', 
-#             'is_favorited',
-#             'is_in_shopping_cart',
-#             'name',
-#             'image',
-#             'text',
-#             'cooking_time',
-#         ) # доделай
-
-
-
-
-
-
-

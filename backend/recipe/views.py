@@ -1,4 +1,3 @@
-# from django.contrib.auth import get_user_model
 
 from django.shortcuts import get_object_or_404
 
@@ -12,9 +11,6 @@ from .permissions import IsOwnerOrAdmin
 from users.models import User
 from .serializers import TagSerializer, RecipeSerializerGet, RecipeSerializer
 from users.serializers import M2MUserRecipeSerializer
-
-# User = get_user_model()
-
 
 
 
