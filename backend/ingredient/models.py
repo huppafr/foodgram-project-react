@@ -8,7 +8,7 @@ from recipe.models import Recipe
 
 
 class Ingredient(models.Model):
-    """The model describes the recipe ingredient."""
+    """Модель, описывающая ингридиент для рецепта"""
     name = models.CharField("Название",
                             max_length=200,
                             default='some ingredient',
@@ -30,7 +30,7 @@ class Ingredient(models.Model):
 
 
 class IngredientAmount(models.Model):
-    """Model for describing the amount of ingredients."""
+    """Модель, описывающая количество одного ингридиента для блюда"""
     ingredient = models.ForeignKey(
         Ingredient,
         on_delete=models.CASCADE,
@@ -45,7 +45,10 @@ class IngredientAmount(models.Model):
     amount = models.PositiveSmallIntegerField(
         blank=False,
         validators=[
-            MinValueValidator(limit_value=0, message="Amount can`t be smaller then 0")
+            MinValueValidator(
+                limit_value=0,
+                message="Amount can`t be smaller then 0"
+            )
         ],
         verbose_name="Количество"
     )

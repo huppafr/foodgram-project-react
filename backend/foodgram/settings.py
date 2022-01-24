@@ -57,8 +57,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'foodgram.urls'
 
-#TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -78,22 +76,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'foodgram.wsgi.application'
 
 TEMPLATES_DIR = os.path.join(PROJECT_ROOT, "templates")
-# TEMPLATES = [
-#     {
-#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-#         'DIRS': [TEMPLATES_DIR],
-#         'APP_DIRS': True,
-#         'OPTIONS': {
-#             'context_processors': [
-#                 'django.template.context_processors.debug',
-#                 'django.template.context_processors.request',
-#                 'django.contrib.auth.context_processors.auth',
-#                 'django.contrib.messages.context_processors.messages',
-#                 #'django.template.context_processors.request',
-#             ],
-#         },
-#     },
-# ]
 
 TEMPLATES = [
     {
@@ -179,17 +161,6 @@ REST_FRAMEWORK = {
 
 }
 
-
-# REST_FRAMEWORK = {
-#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-#     'PAGE_SIZE': 6,
-#     # Используйте стандартные Django  `django.contrib.auth` разрешения,
-#     # или разрешите доступ только для чтения для неаутентифицированных пользователей.
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-#     ]
-    
-# }
 
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': 'users/set_password/{uid}/{token}',

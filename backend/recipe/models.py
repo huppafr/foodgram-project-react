@@ -1,22 +1,21 @@
 
-# from slugger import AutoSlugField
+
 from django.core.validators import RegexValidator
 
-#from django.conf import settings
+
 from django.core.validators import MinValueValidator
 from django.db import models
-#from django.db.models import Exists, OuterRef
+
 from django.utils.translation import gettext_lazy as _
 
-#from ingredient.models import Ingredient
-# from .utils import unique_slugify
+
 from django.utils.html import format_html
 from users.models import User
 
 
 
 class Tag(models.Model):
-    """The model describes the tags for fetching by recipes."""
+    """Модель описания тегов для рецептов"""
     name = models.CharField("Название", max_length=200)
     hexcolor_regex = RegexValidator(
         regex=r'^#(?:[0-9a-fA-F]{3}){1,2}$',
@@ -55,7 +54,7 @@ class Tag(models.Model):
 
 
 class Recipe(models.Model):
-    """The model describes recipes published by the user."""
+    """Модель описывает рецепты, добавленные пользователем"""
     author = models.ForeignKey(
         User, on_delete=models.CASCADE,
         related_name="recipes",

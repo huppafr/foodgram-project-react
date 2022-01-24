@@ -10,9 +10,9 @@ from .models import Recipe, Tag
 
 def add_recipe_with_ingredients_tags(serialized_data):
     """
-    Creates new Recipe instance and adds tags & ingredients to it
-    :param serialized_data: dict with cleaned data.
-    :return: new Recipe object.
+    Создает новый экземпляр Recipe и добавляет к нему теги и ингредиенты
+    :param serialized_data: словарь с очищенными данными.
+    :return: новый объект Recipe.
     """
     author = serialized_data.get('author')
     name = serialized_data.get('name')
@@ -57,10 +57,11 @@ def add_recipe_with_ingredients_tags(serialized_data):
 
 def update_recipe_with_ingredients_tags(serialized_data, recipe_instance):
     """
-    Edit recipe instance and add/remove tags/ingredients associated with it
-    :param serialized_data: dict with cleaned data
-    :param recipe_instance: Recipe object to update
-    :return: updated Recipe object
+    Редактирование экземпляра рецепта и добавлление/удаление
+    тегов/ингредиентов, связанных с ним
+    :param serialized_data: словарь с очищенными данными
+    :param recipe_instance: экземпляр Рецепта для апдейта
+    :return: Обновленный экземпляр Объекта
     """
     tags_data = serialized_data.pop('tags')
     ingredients_data = serialized_data.pop('ingredients')

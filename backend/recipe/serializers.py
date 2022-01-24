@@ -1,10 +1,8 @@
-# from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from users.serializers import UserSerializer
 from django.core.exceptions import ValidationError
 from .fields import Base64ImageField
 from .models import Recipe, Tag
-#from ingredient import IngredientAmount
 from ingredient.serializers import IngredientAmountSerializer
 
 from ingredient.models import IngredientAmount
