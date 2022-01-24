@@ -1,17 +1,10 @@
-# praktikum_new_diplom
-pip install docker docker-compose psycopg2 psycopg2-binary
-pip install django django-autoslug django-uuslug
+# FoodGram
+
+Вам предстоит создать приложение «Продуктовый помощник»: сайт, на котором пользователи будут публиковать рецепты, добавлять чужие рецепты в избранное и подписываться на публикации других авторов. Сервис «Список покупок» позволит пользователям создавать список продуктов, которые нужно купить для приготовления выбранных блюд.
 
 
 <!-- Если у вас macOS или Windows, загрузите PostgreSQL с сайта https://www.postgresql.org/download/ и установите.
 Также потребуется адаптер PostgreSQL под названием Psycopg2 для Python. Эта команда установит его: -->
-pip install psycopg2
-pip install django-environ
-pip install pillow djangorestframework coverage django-filter
-pip install djoser 
-pip install webcolors reportlab
-
-pip install gunicorn 
 
 
 ### Запуск сайта локально из директории backend/
@@ -26,3 +19,9 @@ pip install gunicorn
 ``` docker-compose exec backend python manage.py loaddata fixtures/ingredients.json ```
 ### команда для заполнения проекта статикой
 ``` docker-compose exec backend python manage.py collectstatic ```
+
+
+
+## Автор
+
+- Хюппенен Артем
