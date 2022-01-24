@@ -45,3 +45,4 @@ gunicorn
 python-dotenv==0.19.2
 psycopg2
 flake8
+pytest==6.2.5

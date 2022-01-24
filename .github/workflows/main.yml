@@ -11,7 +11,7 @@ jobs:
     - name: Set up Python 
       uses: actions/setup-python@v2
       with:
-        python-version: 3.7
+        python-version: 3.9
 
     - name: Install dependencies
       run: | 
@@ -25,7 +25,7 @@ jobs:
         python -m flake8
         cd backend/
         python manage.py test
-        
+  # dddd
   # build_and_push_to_docker_hub:
   #   name: Push Docker image to Docker Hub
   #   runs-on: ubuntu-latest
