@@ -43,3 +43,4 @@ djangorestframework_simplejwt
 reportlab
 gunicorn
 python-dotenv==0.19.2
+psycopg2
