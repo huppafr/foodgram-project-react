@@ -14,7 +14,6 @@ environ.Env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-# SECRET_KEY = os.environ.get('SECRET_KEY')
 SECRET_KEY = 'django-insecure-2ax_6n1e=(ry4hc4v4=hgw($@hwy!yb9gbm!#drbt%%uxj3uvw'
 # WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -93,13 +92,7 @@ TEMPLATES = [
         },
     },
 ]
-# Database
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+
 DATABASES = {
     'default': {
         'ENGINE': os.getenv('DB_ENGINE', default='django.db.backends.postgresql'),
