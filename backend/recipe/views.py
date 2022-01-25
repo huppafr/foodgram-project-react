@@ -1,16 +1,16 @@
 
 from django.shortcuts import get_object_or_404
-
+from pdf_format.pdf_generator import shopping_list_pdf
 from rest_framework import permissions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from pdf_format.pdf_generator import shopping_list_pdf
+from users.models import User
+from users.serializers import M2MUserRecipeSerializer
+
 from .filters import RecipeFilter
 from .models import Recipe, Tag
 from .permissions import IsOwnerOrAdmin
-from users.models import User
-from .serializers import TagSerializer, RecipeSerializerGet, RecipeSerializer
-from users.serializers import M2MUserRecipeSerializer
+from .serializers import RecipeSerializer, RecipeSerializerGet, TagSerializer
 
 
 class TagViewSet(viewsets.ModelViewSet):
