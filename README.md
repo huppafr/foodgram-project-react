@@ -16,7 +16,7 @@
 ### команда для заполнения проекта статикой
 ``` docker-compose exec backend python manage.py collectstatic ```
 
-
+[![Django-app workflow](https://github.com/huppafr/foodgram-project-react/actions/workflows/main.yml/badge.svg)](https://github.com/huppafr/foodgram-project-react/actions/workflows/main.yml)
 
 ## Автор
 
