@@ -1,4 +1,3 @@
-
 from rest_framework import viewsets
 
 from .filters import IngredientFilter
@@ -12,4 +11,3 @@ class IngredientsViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = (IngredientFilter,)
     pagination_class = None
     search_fields = ('^name',)
-

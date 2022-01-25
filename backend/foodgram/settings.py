@@ -14,12 +14,12 @@ environ.Env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-#SECRET_KEY = os.environ.get('SECRET_KEY')
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 SECRET_KEY = 'django-insecure-2ax_6n1e=(ry4hc4v4=hgw($@hwy!yb9gbm!#drbt%%uxj3uvw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['huppas-foodgram.ddnsking.com', '62.84.114.131', '127.0.0.1', 'localhost'] 
+ALLOWED_HOSTS = ['huppas-foodgram.ddnsking.com', '62.84.114.131', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -93,21 +93,13 @@ TEMPLATES = [
         },
     },
 ]
-
-
-
-
 # Database
-
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-
-
 DATABASES = {
     'default': {
         'ENGINE': os.environ.get('DB_ENGINE'),
@@ -118,14 +110,9 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT'),
     }
 }
-
-
-
 AUTH_USER_MODEL = 'users.User'
-
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -185,16 +172,10 @@ DJOSER = {
                     },
 }
 
-
-
 LANGUAGE_CODE = 'ru-ru'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 STATIC_URL = '/static/'

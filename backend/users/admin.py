@@ -26,6 +26,7 @@ class UserAdmin(ModelAdmin):
     ]
     empty_value_display = '-пусто-'
 
+
 @register(Follow)
 class FollowAdmin(ModelAdmin):
     list_display = [

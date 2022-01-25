@@ -1,17 +1,7 @@
-
-
-from django.core.validators import RegexValidator
-
-
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, RegexValidator
 from django.db import models
-
-from django.utils.translation import gettext_lazy as _
-
-
 from django.utils.html import format_html
 from users.models import User
-
 
 
 class Tag(models.Model):
@@ -51,8 +41,6 @@ class Tag(models.Model):
         return self.name
 
 
-
-
 class Recipe(models.Model):
     """Модель описывает рецепты, добавленные пользователем"""
     author = models.ForeignKey(
@@ -60,19 +48,26 @@ class Recipe(models.Model):
         related_name="recipes",
         verbose_name="Автор публикации"
     )
-    name = models.CharField("Название",
-                            max_length=200,
-                            unique=True,
-                            default='блюдо от шефповара',
-                            blank=False)
-    image = models.ImageField("Картинка",
-                              blank=False)
-    text = models.TextField("Текстовое описание",
-                            blank=False)
-    tags = models.ManyToManyField("Tag",
-                                  related_name="recipes",
-                                  verbose_name="Теги",
-                                  )
+    name = models.CharField(
+        "Название",
+        max_length=200,
+        unique=True,
+        default='блюдо от шефповара',
+        blank=False
+    )
+    image = models.ImageField(
+        "Картинка",
+        blank=False
+    )
+    text = models.TextField(
+        "Текстовое описание",
+        blank=False
+    )
+    tags = models.ManyToManyField(
+        "Tag",
+        related_name="recipes",
+        verbose_name="Теги",
+    )
     cooking_time = models.PositiveSmallIntegerField(
         validators=[
             MinValueValidator(limit_value=1, message="Time smaller 1")

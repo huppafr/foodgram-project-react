@@ -1,7 +1,5 @@
-#from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractUser):
@@ -23,16 +21,19 @@ class User(AbstractUser):
 
 class Follow(models.Model):
     '''Модель, описывающая подписку пользователей друг на друга'''
-    author = models.ForeignKey(User,
-                               related_name='author_follow',
-                               on_delete=models.CASCADE,
-                               verbose_name='you_Who_have_been_subscribed_to_people')
+    author = models.ForeignKey(
+        User,
+        related_name='author_follow',
+        on_delete=models.CASCADE,
+        verbose_name='you_Who_have_been_subscribed_to_people'
+    )
 
-    subscriber = models.ForeignKey(User,
-                                   related_name="following",
-                                   on_delete=models.CASCADE,
-                                   verbose_name="People_who_u_subscribed",
-                                   )
+    subscriber = models.ForeignKey(
+        User,
+        related_name="following",
+        on_delete=models.CASCADE,
+        verbose_name="People_who_u_subscribed",
+    )
 
     class Meta:
         constraints = [
@@ -40,8 +41,5 @@ class Follow(models.Model):
                 fields=['subscriber', 'author'], name='unique_subscription'
             ),
         ]
-
-    class Meta:
         verbose_name = 'Подписку'
         verbose_name_plural = 'Подписки'
-

@@ -1,21 +1,18 @@
+from django.core.exceptions import ValidationError
+from ingredient.models import IngredientAmount
+from ingredient.serializers import IngredientAmountSerializer
 from rest_framework import serializers
 from users.serializers import UserSerializer
-from django.core.exceptions import ValidationError
+
 from .fields import Base64ImageField
 from .models import Recipe, Tag
-from ingredient.serializers import IngredientAmountSerializer
-
-from ingredient.models import IngredientAmount
 
 
 class TagSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Tag
         fields = ['id', 'name', 'color', 'slug']
         read_only_fields = ['name', 'color', 'slug']
-
-
 
 
 class RecipeSerializer(serializers.ModelSerializer):

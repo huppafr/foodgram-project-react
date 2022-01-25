@@ -27,7 +27,7 @@ class ReadPostForRegPutDelForAdmin(permissions.BasePermission):
             if request.method == 'POST':
                 return True
             if obj.author == request.user:
-                    return True
+                return True
             raise UserForbidden
         raise AnonForbidden
 

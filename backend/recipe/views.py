@@ -13,7 +13,6 @@ from .serializers import TagSerializer, RecipeSerializerGet, RecipeSerializer
 from users.serializers import M2MUserRecipeSerializer
 
 
-
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer

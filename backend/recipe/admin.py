@@ -1,11 +1,8 @@
 from django.contrib import admin
-
 from django.contrib.admin import ModelAdmin, register
-from django.utils.translation import gettext_lazy as _
-
-from .models import Recipe, Tag
 from ingredient.models import IngredientAmount
 
+from .models import Recipe, Tag
 
 
 @register(Tag)
@@ -39,8 +36,6 @@ class IngredientAmountInline(admin.TabularInline):
     verbose_name_plural = 'Ингридиенты'
 
 
-
-
 @register(Recipe)
 class RecipeAdmin(ModelAdmin):
     list_display = [
@@ -51,12 +46,12 @@ class RecipeAdmin(ModelAdmin):
         'cooking_time',
         'author',
     ]
-    exclude = ['ingredients', 'tags', 'who_likes_it',]
+    exclude = ['ingredients', 'tags', 'who_likes_it', ]
     inlines = [
         IngredientAmountInline,
         TagInline,
         LikesInline,
     ]
-    list_filter = ['name', 'cooking_time', 'author',]
-    search_fields = ['name','author',]
+    list_filter = ['name', 'cooking_time', 'author', ]
+    search_fields = ['name', 'author', ]
     empty_value_display = '-пусто-'

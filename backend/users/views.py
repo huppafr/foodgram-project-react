@@ -1,18 +1,11 @@
-
 from django.shortcuts import get_object_or_404
-from django.utils.translation import gettext_lazy as _
-
-
 from rest_framework import permissions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-
-from .serializers import (SetPasswordSerializer, UserSerializer,
-                         UserSubscriptionSerializer)
 from .models import Follow, User
-
-
+from .serializers import (SetPasswordSerializer, UserSerializer,
+                          UserSubscriptionSerializer)
 
 
 class UserViewSet(viewsets.ModelViewSet):
