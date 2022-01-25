@@ -57,6 +57,7 @@ jobs:
         host: ${{ secrets.HOST_YANDEX_CLOUD }}
         username: ${{ secrets.USERNAME_YANDEX_CLOUD }}
         key: ${{ secrets.SSH_YANDEX_CLOUD }}
+        passphrase: ${{ secrets.PASSPHRASE }}
         script: |
           cd foodgram-project-react/backend/foodgram/
           rm .env
@@ -88,7 +89,7 @@ jobs:
 
 
   # deploy:
-  #   runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest   333
   #   needs: build_and_push_to_docker_hub
   #   steps:
   #   - name: executing remote ssh commands to deploy
