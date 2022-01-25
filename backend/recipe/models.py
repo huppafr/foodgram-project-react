@@ -86,7 +86,6 @@ class Recipe(models.Model):
         related_name='shopping_carts',
         verbose_name='Кто хочет купить'
     )
-    
 
     class Meta:
         verbose_name = "Рецепт"
