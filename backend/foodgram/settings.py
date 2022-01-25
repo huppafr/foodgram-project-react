@@ -16,7 +16,7 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 # SECRET_KEY = os.environ.get('SECRET_KEY')
 SECRET_KEY = 'django-insecure-2ax_6n1e=(ry4hc4v4=hgw($@hwy!yb9gbm!#drbt%%uxj3uvw'
-# SECURITY WARNING: don't run with debug turned on in production!
+# WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = ['huppas-foodgram.ddnsking.com', '62.84.114.131', '127.0.0.1', 'localhost']
