@@ -14,14 +14,13 @@ environ.Env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-SECRET_KEY = 'django-insecure-2ax_6n1e=(ry4hc4v4=hgw($@hwy!yb9gbm!#drbt%%uxj3uvw'
-# WARNING: don't run with debug turned on in production!
+SECRET_KEY = env('SECRET_KEY')
+#SECRET_KEY = 'django-insecure-2ax_6n1e=(ry4hc4v4=hgw($@hwy!yb9gbm!#drbt%%uxj3uvw'
+
 DEBUG = False
 
 ALLOWED_HOSTS = ['huppas-foodgram.ddnsking.com', '62.84.114.131', '127.0.0.1', 'localhost']
 
-
-# Application definition
 
 INSTALLED_APPS = [
     'recipe',
@@ -104,8 +103,7 @@ DATABASES = {
     }
 }
 AUTH_USER_MODEL = 'users.User'
-# Password validation
-# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',

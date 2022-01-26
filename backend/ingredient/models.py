@@ -1,6 +1,7 @@
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.db.models.constraints import UniqueConstraint
+
 from recipe.models import Recipe
 
 
@@ -10,13 +11,11 @@ class Ingredient(models.Model):
         "Название",
         max_length=200,
         default='some ingredient',
-        blank=False
     )
     measurement_unit = models.CharField(
         "Единицы измерения",
         max_length=20,
         default="шт",
-        blank=False
     )
 
     class Meta:
@@ -42,7 +41,6 @@ class IngredientAmount(models.Model):
         verbose_name="Рецепт"
     )
     amount = models.PositiveSmallIntegerField(
-        blank=False,
         validators=[
             MinValueValidator(
                 limit_value=0,

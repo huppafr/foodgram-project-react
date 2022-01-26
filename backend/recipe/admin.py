@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin, register
-from ingredient.models import IngredientAmount
 
+from ingredient.models import IngredientAmount
 from .models import Recipe, Tag
 
 

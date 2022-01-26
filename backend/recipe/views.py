@@ -1,13 +1,12 @@
-
 from django.shortcuts import get_object_or_404
 from pdf_format.pdf_generator import shopping_list_pdf
 from rest_framework import permissions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+
+from ingredient.filters import RecipeFilter
 from users.models import User
 from users.serializers import M2MUserRecipeSerializer
-
-from .filters import RecipeFilter
 from .models import Recipe, Tag
 from .permissions import IsOwnerOrAdmin
 from .serializers import RecipeSerializer, RecipeSerializerGet, TagSerializer
@@ -90,7 +89,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
             recipe.shopping_cart.remove(user)
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(
-            {'detail': 'Recipe have been added'},
+            {'detail': 'Действие уже выполнено'},
             status=status.HTTP_400_BAD_REQUEST
         )
 

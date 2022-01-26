@@ -1,6 +1,7 @@
 from django.core.validators import MinValueValidator, RegexValidator
 from django.db import models
 from django.utils.html import format_html
+
 from users.models import User
 
 
@@ -23,15 +24,8 @@ class Tag(models.Model):
         "URL-адрес тега",
         unique=True,
         max_length=200,
-        blank=False
     )
 
-    def colored_name(self):
-        """Color in format HEX."""
-        return format_html(
-            '<span style="color: #{};">{}</span>',
-            self.color,
-        )
 
     class Meta:
         verbose_name = "Тег"
@@ -39,6 +33,13 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+    def colored_name(self):
+        """Color in format HEX."""
+        return format_html(
+            '<span style="color: #{};">{}</span>',
+            self.color,
+        )
 
 
 class Recipe(models.Model):
@@ -53,15 +54,12 @@ class Recipe(models.Model):
         max_length=200,
         unique=True,
         default='блюдо от шефповара',
-        blank=False
     )
     image = models.ImageField(
         "Картинка",
-        blank=False
     )
     text = models.TextField(
         "Текстовое описание",
-        blank=False
     )
     tags = models.ManyToManyField(
         "Tag",
@@ -74,7 +72,6 @@ class Recipe(models.Model):
         ],
         verbose_name="Время приготовления",
         default=40,
-        blank=False
     )
     favorite_this = models.ManyToManyField(
         User,
