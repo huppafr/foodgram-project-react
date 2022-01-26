@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 SECRET_KEY = env('SECRET_KEY')
-#SECRET_KEY = 'django-insecure-2ax_6n1e=(ry4hc4v4=hgw($@hwy!yb9gbm!#drbt%%uxj3uvw'
+# SECRET_KEY = 'django-insecure-2ax_6n1e=(ry4hc4v4=hgw($@hwy!yb9gbm!#drbt%%uxj3uvw'
 
 DEBUG = False
 
