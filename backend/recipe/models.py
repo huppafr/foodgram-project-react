@@ -26,7 +26,6 @@ class Tag(models.Model):
         max_length=200,
     )
 
-
     class Meta:
         verbose_name = "Тег"
         verbose_name_plural = "Теги"
