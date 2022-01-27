@@ -1,12 +1,12 @@
 from django.shortcuts import get_object_or_404
+from ingredient.filters import RecipeFilter
 from pdf_format.pdf_generator import shopping_list_pdf
 from rest_framework import permissions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
-from ingredient.filters import RecipeFilter
 from users.models import User
 from users.serializers import M2MUserRecipeSerializer
+
 from .models import Recipe, Tag
 from .permissions import IsOwnerOrAdmin
 from .serializers import RecipeSerializer, RecipeSerializerGet, TagSerializer
@@ -39,26 +39,22 @@ class RecipeViewSet(viewsets.ModelViewSet):
     def perform_update(self, serializer):
         serializer.save(author=self.request.user)
 
-    @action(
-        detail=False,
-        methods=['post', 'delete'],
-        url_path=r'(?P<id>[\d]+)/favorite',
-        url_name='favorite',
-        pagination_class=None,
-        permission_classes=[permissions.IsAuthenticated]
-    )
-    def favorite(self, request, **kwargs):
+    def base_func(self, request, **kwargs):
         user = request.user
         recipe = get_object_or_404(Recipe, id=kwargs['id'])
-        like = User.objects.filter(
+        obj_exists = User.objects.filter(
             id=user.id,
-            favourite_recipes=recipe
         ).exists()
-        if request.method == 'POST' and not like:
-            recipe.favorite_this.add(user)
+        field_url = kwargs['field_url']
+        if field_url == 'favorite':
+            field = recipe.favorite_this
+        elif field_url == 'shopping_cart':
+            field = recipe.shopping_cart
+        if request.method == 'POST':
+            field.add(user)
             serializer = M2MUserRecipeSerializer(recipe)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        if request.method == 'DELETE' and like:
+        if request.method == 'DELETE' and obj_exists:
             recipe.favorite_this.remove(user)
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(
@@ -69,29 +65,24 @@ class RecipeViewSet(viewsets.ModelViewSet):
     @action(
         detail=False,
         methods=['post', 'delete'],
+        url_path=r'(?P<id>[\d]+)/favorite',
+        url_name='favorite',
+        pagination_class=None,
+        permission_classes=[permissions.IsAuthenticated]
+    )
+    def favorite(self, request, **kwargs):
+        return(self.base_func(request, **kwargs, field_url='favorite'))
+
+    @action(
+        detail=False,
+        methods=['post', 'delete'],
         url_path=r'(?P<id>[\d]+)/shopping_cart',
         url_name='shopping_cart',
         pagination_class=None,
         permission_classes=[permissions.IsAuthenticated]
     )
     def shopping_cart(self, request, **kwargs):
-        user = request.user
-        recipe = get_object_or_404(Recipe, id=kwargs['id'])
-        is_added = User.objects.filter(
-            id=user.id,
-            shopping_carts=recipe
-        ).exists()
-        if request.method == 'POST' and not is_added:
-            recipe.shopping_cart.add(user)
-            serializer = M2MUserRecipeSerializer(recipe)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        if request.method == 'DELETE' and is_added:
-            recipe.shopping_cart.remove(user)
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        return Response(
-            {'detail': 'Действие уже выполнено'},
-            status=status.HTTP_400_BAD_REQUEST
-        )
+        return(self.base_func(request, **kwargs, field_url='shopping_cart'))
 
     @action(
         detail=False,
