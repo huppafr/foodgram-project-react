@@ -1,9 +1,10 @@
 from django.db.models import Sum
 from django.http import HttpResponse
-from ingredient.models import IngredientAmount
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen.canvas import Canvas
+
+from ingredient.models import IngredientAmount
 
 
 def shopping_list_pdf(user):
