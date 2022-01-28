@@ -21,7 +21,7 @@ class TagViewSet(viewsets.ModelViewSet):
 class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.select_related('author').prefetch_related(
         'ingredients'
-    ).all()
+    ).all().order_by('-pub_date')
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly,
         IsOwnerOrAdmin,

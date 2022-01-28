@@ -82,6 +82,10 @@ class Recipe(models.Model):
         related_name='shopping_carts',
         verbose_name='Кто хочет купить'
     )
+    pub_date = models.DateTimeField(
+        verbose_name='Дата публикации',
+        auto_now_add=True,
+    )
 
     class Meta:
         verbose_name = "Рецепт"
