@@ -2,11 +2,11 @@ from django.shortcuts import get_object_or_404
 from rest_framework import permissions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from pdf_format.pdf_generator import shopping_list_pdf
 
+from ingredient.filters import RecipeFilter
+from pdf_format.pdf_generator import shopping_list_pdf
 from users.models import User
 from users.serializers import M2MUserRecipeSerializer
-from ingredient.filters import RecipeFilter
 from .models import Recipe, Tag
 from .permissions import IsOwnerOrAdmin
 from .serializers import RecipeSerializer, RecipeSerializerGet, TagSerializer
@@ -42,13 +42,18 @@ class RecipeViewSet(viewsets.ModelViewSet):
     def base_func(self, request, **kwargs):
         user = request.user
         recipe = get_object_or_404(Recipe, id=kwargs['id'])
-        obj_exists = User.objects.filter(
-            id=user.id,
-        ).exists()
         field_url = kwargs['field_url']
         if field_url == 'favorite':
+            obj_exists = User.objects.filter(
+            id=user.id,
+            favourite_recipes=recipe
+        ).exists()
             field = recipe.favorite_this
         elif field_url == 'shopping_cart':
+            obj_exists = User.objects.filter(
+            id=user.id,
+            shopping_carts=recipe
+        ).exists()
             field = recipe.shopping_cart
         if request.method == 'POST':
             field.add(user)
