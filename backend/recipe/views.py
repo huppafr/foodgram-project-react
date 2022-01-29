@@ -45,15 +45,15 @@ class RecipeViewSet(viewsets.ModelViewSet):
         field_url = kwargs['field_url']
         if field_url == 'favorite':
             obj_exists = User.objects.filter(
-            id=user.id,
-            favourite_recipes=recipe
-        ).exists()
+                id=user.id,
+                favourite_recipes=recipe
+            ).exists()
             field = recipe.favorite_this
         elif field_url == 'shopping_cart':
             obj_exists = User.objects.filter(
-            id=user.id,
-            shopping_carts=recipe
-        ).exists()
+                id=user.id,
+                shopping_carts=recipe
+            ).exists()
             field = recipe.shopping_cart
         if request.method == 'POST':
             field.add(user)
