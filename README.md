@@ -32,7 +32,6 @@
 [![Django-app workflow](https://github.com/huppafr/foodgram-project-react/actions/workflows/main.yml/badge.svg)](https://github.com/huppafr/foodgram-project-react/actions/workflows/main.yml)
 
 ## ToDo
-- Покрыть проект тестами
 - Реализовать почтовый сервер
 
 ## Автор
