@@ -38,6 +38,33 @@ DB_PORT=5432
 
 ## Подготовка инфраструктуры:
 
+1. Клонируйте репозиторий на локальный компьютер
+2. Создайте и активируйте виртуальное окружение
+```bash
+python3 -m venv venv
+. venv/bin/activate
+```
+3. Установите зависимости
+```bash
+pip install -r requirements.txt
+```
+4. Выполните миграции
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+5. Создайте администратора
+```bash
+python manage.py createsuperuser
+```
+6. Запустите проект локально
+```bash
+python manage.py runserver
+```
+
+Готово, проект доступен по адресу http://127.0.0.1:8000/
+
+
 ### Запуск сайта локально из директории backend/
 ``` python manage.py runserver ```
 ### Запуск сервера из ubuntu осуществляется командой
